@@ -1,0 +1,20 @@
+.custom-arrow {
+  background-color: #00246e;
+  padding: 10px;
+  border-radius: 50%;
+  color: #00246e;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-arrow:hover {
+  background-color: #0081b2;
+}
+
+.slick-dots li button:before {
+  color: #0081b2;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #f3a50f;
+}

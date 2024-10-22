@@ -1,77 +1,53 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import WaveDivider from "./compositions/WaveDivider/WaveDivider";
+import CampaignGoals from "./compositions/CampaignGoals/CampaignGoals";
+import ContactSection from "./compositions/ContactSection";
+import AboutMe from "./compositions/AboutMe";
+import ContactForm from "./compositions/ContanctForm";
 
-export default function Page() {
-  const [isClient, setIsClient] = useState(false);
-  const { scrollY } = useScroll();
-  const headerOpacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const contentOpacity = useTransform(scrollY, [0, 300], [0, 1]);
-
-  // Debug: Log scroll position
-  useEffect(() => {
-    const unsubscribe = scrollY.onChange((latest) => {
-      console.log("Scroll position:", latest);
-    });
-    return () => unsubscribe();
-  }, [scrollY]);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
-
-  console.log("Greetings from Felix");
-
+export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-cream-100 text-navy-900">
-      {/* Fixed Header */}
-      <motion.header
-        className="fixed inset-0 flex flex-col justify-center items-center bg-cream-100 z-10"
-        style={{ opacity: headerOpacity }}
+    <div className="min-h-screen  text-white overflow-hidden">
+      {/* Main Content */}
+      <main
+        className=" mx-auto px-4 py-12 md:pt-24 flex flex-col-reverse md:flex-row items-center h-[60vh] relative bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/assets/images/ueberlingen_city.jpg')",
+        }}
       >
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Thomas Hildebrandt
-        </h1>
-        <h2 className="text-3xl md:text-5xl font-bold text-blue-600 mb-2">
-          Oberbürgermeisterwahl 2024
-        </h2>
-        <h3 className="text-2xl md:text-4xl font-bold text-red-600">TBD</h3>
-      </motion.header>
+        <div className="absolute inset-0 bg-black opacity-40"></div>
 
-      {/* Scrollable Content */}
-      <motion.main
-        className="relative z-20 bg-white"
-        style={{ opacity: contentOpacity }}
-      >
-        <div className="h-screen" />{" "}
-        {/* Spacer to ensure content starts below the header */}
-        {/* Vision Section */}
-        <section className="bg-blue-600 text-white py-16">
-          {/* ... (Vision section content remains unchanged) ... */}
-        </section>
-        {/* Working for Us Section */}
-        <section className="py-16">
-          {/* ... (Working for Us section content remains unchanged) ... */}
-        </section>
-        {/* Debug Section */}
-        <section className="py-16 bg-gray-200">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-4"></h2>
-            <motion.p>{scrollY}</motion.p>
+        <div className="flex flex-col md:flex-row justify-around w-full relative z-10 space-y-8 md:space-y-0">
+          <div className="text-center md:text-left mb-8 md:mb-0">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+              Thomas Hildebrandt
+            </h1>
+            <p className="text-white mb-8 italic">
+              Für ein starkes, lebenswertes Überlingen,
+              <br />
+              dass alle Bürger vereint – für heute und die Zukunft.
+            </p>
           </div>
-        </section>
-        {/* Footer */}
-        <footer className="bg-navy-900 text-white py-8">
-          <div className="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Thomas Hildebrandt. All rights reserved.</p>
-          </div>
-        </footer>
-      </motion.main>
+        </div>
+
+        <WaveDivider fillColor="fill-white" />
+      </main>
+
+      {/* Additional Content */}
+
+      <div className=" mx-auto ">
+        <CampaignGoals />
+      </div>
+
+      <div className=" mx-auto">
+        <AboutMe />
+      </div>
+
+      <div className=" mx-auto">
+        <ContactSection />
+        <ContactForm />
+      </div>
     </div>
   );
 }
