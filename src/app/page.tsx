@@ -5,6 +5,7 @@ import CampaignGoals from "./compositions/CampaignGoals/CampaignGoals";
 import ContactSection from "./compositions/ContactSection";
 import AboutMe from "./compositions/AboutMe";
 import ContactForm from "./compositions/ContanctForm";
+import ConsentBanner from "./ConsentBanner";
 
 export default function LandingPage() {
   return (
@@ -48,6 +49,7 @@ export default function LandingPage() {
         <ContactSection />
         <ContactForm />
       </div>
+      <ConsentBanner />
     </div>
   );
 }

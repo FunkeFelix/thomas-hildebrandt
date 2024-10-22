@@ -18,7 +18,7 @@ export default function ContactSection() {
           <span className="font-semibold"> Vielen Dank!</span>
         </p>
 
-        <div className="flex w-full justify-around">
+        <div className="flex w-full justify-around flex-col md:flex-row items-center">
           <div
             onClick={() =>
               window.open("mailto:thomas.hildebrandt.ob2024@gmail.com")
@@ -31,7 +31,12 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-md mb-8  w-64">
+          <div
+            onClick={() =>
+              window.open("https://www.instagram.com/thomashildebrandt/")
+            }
+            className="bg-white p-6 rounded-lg shadow-md mb-8  w-64"
+          >
             <div className="flex flex-col items-center">
               <Instagram className="w-12 h-12 text-black" />
               <span className="text-lg font-semibold text-black">
