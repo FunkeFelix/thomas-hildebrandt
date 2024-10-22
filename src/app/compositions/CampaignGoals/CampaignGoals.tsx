@@ -101,13 +101,25 @@ export default function CampaignGoals() {
       </h2>
       <div className="container mx-auto mb-24 flex flex-col md:flex-row justify-around items-center">
         <p className="text-gray-700 md:w-1/2 leading-relaxed text-lg font-light md:text-xl tracking-wide mb-8 md:mb-0 text-center md:text-left">
-          Liebe Bürgerinnen und Bürger von Überlingen und den Ortsteilen
-          Andelshofen, Bambergen, Bonndorf, Deisendorf, Hödingen, Lippertsreute,
-          Nesselwangen und Nußdorf, Als langjähriger Bürger und Handwerksmeister
-          kenne ich die Herausforderungen, die Überlingen betreffen. Ich trete
-          an, um Überlingen in den Bereichen Wohnen, Verkehr, Handel und Kultur
-          zu stärken, und mit Ihnen gemeinsam Lösungen für eine lebenswerte
-          Zukunft zu entwickeln.
+          <strong className="font-bold">
+            Liebe Bürgerinnen und Bürger von Überlingen
+          </strong>{" "}
+          und den Ortsteilen
+          <strong className="font-bold"> Andelshofen</strong>,{" "}
+          <strong className="font-bold">Bambergen</strong>,{" "}
+          <strong className="font-bold">Bonndorf</strong>,
+          <strong className="font-bold">Deisendorf</strong>,{" "}
+          <strong className="font-bold">Hödingen</strong>,{" "}
+          <strong className="font-bold">Lippertsreute</strong>,
+          <strong className="font-bold">Nesselwangen</strong> und{" "}
+          <strong className="font-bold">Nußdorf</strong>:
+          <br />
+          <br />
+          Als langjähriger Bürger und Handwerksmeister kenne ich die
+          Herausforderungen, die Überlingen betreffen. Ich trete an, um
+          Überlingen in den Bereichen Wohnen, Verkehr, Handel und Kultur zu
+          stärken, und mit Ihnen gemeinsam Lösungen für eine lebenswerte Zukunft
+          zu entwickeln.
         </p>
 
         <div className="w-[300px] h-[200px] md:w-[450px] md:h-[300px] rounded-lg overflow-hidden border-4 border-[#00246e] shadow-lg transform transition-transform duration-300 hover:scale-105">
