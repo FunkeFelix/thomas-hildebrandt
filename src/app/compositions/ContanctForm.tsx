@@ -1,10 +1,39 @@
+"use client";
 import { useForm, ValidationError } from "@formspree/react";
 import { toast } from "react-toastify";
 import { Circles } from "react-loader-spinner";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ContactForm() {
   const [state, handleSubmit] = useForm("meoqokoj");
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  // Inline utility function to check if localStorage is available
+  const isLocalStorageAvailable = (): boolean => {
+    return typeof window !== "undefined" && typeof localStorage !== "undefined";
+  };
+
+  // Inline utility function to get an item from localStorage
+  const getLocalStorageItem = (key: string): string | null => {
+    if (isLocalStorageAvailable()) {
+      return localStorage.getItem(key);
+    }
+    return null;
+  };
+
+  // Inline utility function to set an item in localStorage
+  const setLocalStorageItem = (key: string, value: string): void => {
+    if (isLocalStorageAvailable()) {
+      localStorage.setItem(key, value);
+    }
+  };
+
+  useEffect(() => {
+    const formSubmitted = getLocalStorageItem("formSubmitted");
+    if (formSubmitted === "true") {
+      setIsFormSubmitted(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (state.submitting) {
@@ -22,7 +51,8 @@ export default function ContactForm() {
 
     if (state.succeeded) {
       // Set local storage item to prevent form resubmission
-      localStorage.setItem("formSubmitted", "true");
+      setLocalStorageItem("formSubmitted", "true");
+
       // Show success toast when the form is successfully submitted
       toast.success(
         "Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt. Wir werden uns bald bei Ihnen melden.",
@@ -55,10 +85,11 @@ export default function ContactForm() {
     }
   }, [state]);
 
-  const preventMultipleSubmissions = () => {
-    // Check if the form has already been submitted
-    const formSubmitted = localStorage.getItem("formSubmitted");
-    if (formSubmitted) {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!isFormSubmitted) {
+      handleSubmit(event);
+    } else {
       toast.warn("Sie haben dieses Formular bereits gesendet.", {
         position: "top-right",
         autoClose: 5000,
@@ -68,15 +99,6 @@ export default function ContactForm() {
         draggable: true,
         style: { backgroundColor: "#f3a50f", color: "#000000" },
       });
-      return true; // Prevent submission
-    }
-    return false; // Allow submission
-  };
-
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!preventMultipleSubmissions()) {
-      handleSubmit(event); // Proceed with form submission
     }
   };
 
@@ -98,7 +120,10 @@ export default function ContactForm() {
       );
     } else if (state.succeeded) {
       return "Nachricht gesendet!";
-    } else if (!!localStorage.getItem("formSubmitted")) {
+    } else if (
+      isLocalStorageAvailable() &&
+      getLocalStorageItem("formSubmitted")
+    ) {
       return "Sie haben bereits eine Nachricht gesendet!";
     } else {
       return "Senden";
@@ -109,7 +134,7 @@ export default function ContactForm() {
     return (
       state.submitting ||
       state.succeeded ||
-      !!localStorage.getItem("formSubmitted")
+      (isLocalStorageAvailable() && !!getLocalStorageItem("formSubmitted"))
     );
   };
 
@@ -175,9 +200,7 @@ export default function ContactForm() {
           type="submit"
           disabled={isButtonDisabled()}
           className={`w-full text-white font-semibold py-3 px-4 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#0081b2] ${
-            state.submitting ||
-            state.succeeded ||
-            localStorage.getItem("formSubmitted")
+            isButtonDisabled()
               ? "bg-gray-400 cursor-not-allowed" // Styles when disabled
               : "bg-[#00246e] hover:bg-[#0081b2] cursor-pointer" // Styles when enabled
           }`}

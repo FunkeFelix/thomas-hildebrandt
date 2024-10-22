@@ -4,18 +4,22 @@ const ConsentBanner = () => {
   const [consentGiven, setConsentGiven] = useState(false);
 
   useEffect(() => {
-    const storedConsent = localStorage.getItem("localStorageConsent");
-    if (storedConsent === "true") {
-      setConsentGiven(true);
+    if (typeof window !== "undefined") {
+      const storedConsent = localStorage.getItem("localStorageConsent");
+      if (storedConsent === "true") {
+        setConsentGiven(true);
+      }
     }
   }, []);
 
   const handleConsent = () => {
-    localStorage.setItem("localStorageConsent", "true");
+    if (typeof window !== "undefined") {
+      localStorage.setItem("localStorageConsent", "true");
+    }
     setConsentGiven(true);
   };
 
-  if (consentGiven) return null; // Hide the banner if consent is given
+  if (consentGiven) return null;
 
   return (
     <div className="fixed bottom-0 w-full bg-[#dbf3fd] text-[#00246e] p-3 shadow-lg">
