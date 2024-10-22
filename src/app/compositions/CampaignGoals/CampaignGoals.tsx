@@ -5,8 +5,10 @@ import {
   Music,
   ChevronLeft,
   ChevronRight,
+  ArrowBigLeft,
+  ArrowBigRight,
 } from "lucide-react";
-import { useState, useRef, CSSProperties } from "react";
+import { useState, useRef, CSSProperties, useEffect } from "react";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -78,8 +80,24 @@ export default function CampaignGoals() {
     sliderRef.current?.slickGoTo(index);
   };
 
+  const handleArrowClick = (direction: "left" | "right") => {
+    if (direction === "left") {
+      sliderRef.current?.slickPrev();
+    } else {
+      sliderRef.current?.slickNext();
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      sliderRef.current?.slickNext();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-8 lg:py-24 bg-white">
+    <section className="py-8 px-8 lg:py-24 bg-white">
       <h2 className="text-3xl font-bold text-center text-[#00246e] mb-12">
         Statt nur verwalten gemeinsam gestalten
       </h2>
@@ -117,20 +135,31 @@ export default function CampaignGoals() {
           ))}
         </div>
       </div>
-      <div className="mx-auto px-8 md:px-4 mt-24 sm:w-[80%] lg:w-[50%] slider-container border-4 border-[#00246e] rounded-lg relative">
+      <div className="flex mt-24 justify-between md:hidden mb-6">
+        <ArrowBigLeft
+          onClick={() => handleArrowClick("left")}
+          className="w-10 h-10 text-[#00246e] cursor-pointer"
+        />
+        <ArrowBigRight
+          onClick={() => handleArrowClick("right")}
+          className="w-10 h-10 text-[#00246e] cursor-pointer"
+        />
+      </div>
+
+      <div className="mx-auto px-0 md:px-4 md:mt-24 sm:w-[100%] lg:w-[50%] slider-container border-4 border-[#00246e] rounded-lg relative">
         <Slider {...settings} ref={sliderRef}>
           {goals.map((element, index) => (
             <div
               key={index}
               className="p-4 bg-white rounded-lg h-72 w-full mx-auto overflow-hidden"
             >
-              <div className="overflow-y-auto h-full custom-scrollbar p-4">
+              <div className="overflow-y-auto h-full custom-scrollbar p-4 flex justify-center items-center">
                 <ul className="space-y-3  h-full">
                   {element.points.map((point, idx) => (
                     <li
                       key={idx}
                       onClick={() => setOpenModal(true)}
-                      className="border-b-2 border-[#00246e] text-gray-800 font-medium  p-6  hover:bg-[#dbf3fd] transition-all duration-300 ease-in-out cursor-pointer   hover:shadow-lg"
+                      className="border-b-2 border-[#00246e] text-gray-800 font-small md:font-medium  p-2 md:p-8  hover:bg-[#dbf3fd] transition-all duration-300 ease-in-out cursor-pointer   hover:shadow-lg"
                     >
                       {point}
                     </li>
