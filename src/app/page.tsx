@@ -44,7 +44,7 @@ export default function LandingPage() {
         <AboutMe />
       </div>
 
-      <div className=" mx-auto">
+      <div className="mx-auto bg-gray-100 pb-24">
         <ContactSection />
         <ContactForm />
       </div>

@@ -19,8 +19,13 @@ export default function ContactSection() {
         </p>
 
         <div className="flex w-full justify-around">
-          <div className="bg-white p-6 rounded-lg shadow-md mb-8 w-64">
-            <div className="flex flex-col items-center">
+          <div
+            onClick={() =>
+              window.open("mailto:thomas.hildebrandt.ob2024@gmail.com")
+            }
+            className="bg-white p-6 rounded-lg shadow-md mb-8 w-64 cursor-pointer"
+          >
+            <div className="flex flex-col items-center ">
               <Mail className="w-12 h-12 text-black" />
               <span className="text-lg font-semibold text-black">E-Mail</span>
             </div>

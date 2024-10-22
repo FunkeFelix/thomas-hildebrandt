@@ -9,62 +9,97 @@ export default function ContactForm() {
   useEffect(() => {
     if (state.submitting) {
       // Show loading toast when the form is being submitted
-      toast.info("Submitting your message...", {
+      toast.info("Ihre Nachricht wird gesendet. Bitte warten Sie...", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: true,
+        style: { backgroundColor: "#00246e", color: "#dbf3fd" },
       });
     }
 
     if (state.succeeded) {
       // Show success toast when the form is successfully submitted
-      toast.success("Thank you! Your message has been sent.", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-      });
+      toast.success(
+        "Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt. Wir werden uns bald bei Ihnen melden.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          style: { backgroundColor: "#0081b2", color: "#ffffff" },
+        }
+      );
     }
 
     if (state.errors) {
       // Show error toast if submission failed
-      toast.error("Oops! Something went wrong. Please try again.", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-      });
+      toast.error(
+        "Es gab einen Fehler bei der Übermittlung. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          style: { backgroundColor: "#970000", color: "#ffffff" },
+        }
+      );
     }
   }, [state]);
 
+  // Function to test toasts
+  const triggerTestToast = (type) => {
+    if (type === "info") {
+      toast.info("Test: Ihre Nachricht wird gesendet. Bitte warten Sie...", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        style: {
+          backgroundColor: "#00246e",
+          color: "#dbf3fd",
+          borderColor: "#00246e",
+        },
+      });
+    } else if (type === "success") {
+      toast.success(
+        "Test: Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          style: { backgroundColor: "#00246e", color: "#ffffff" },
+        }
+      );
+    } else if (type === "error") {
+      toast.error(
+        "Test: Es gab einen Fehler bei der Übermittlung. Bitte versuchen Sie es erneut.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          style: { backgroundColor: "#970000", color: "#ffffff" },
+        }
+      );
+    }
+  };
+
   return (
     <>
-      <button
-        onClick={() =>
-          toast.info(
-            "Thank you for your interest! Please contact me via email at",
-            {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-            }
-          )
-        }
-        className="bg-[#f7d794] hover:bg-[#00246e] text-[#00246e] hover:text-white px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
-      >
-        Donate
-      </button>
-
       <form
         onSubmit={handleSubmit}
         className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg border border-gray-200"
@@ -113,7 +148,7 @@ export default function ContactForm() {
           name="message"
           rows={4}
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0081b2] mb-4 text-black"
-          placeholder="Describe your issue"
+          placeholder="Beschreiben Sie Ihr Anliegen"
         />
         <ValidationError
           prefix="Message"
@@ -146,6 +181,28 @@ export default function ContactForm() {
           )}
         </button>
       </form>
+
+      {/* Test Buttons for Toast Messages */}
+      {/* <div className="mt-8">
+        <button
+          onClick={() => triggerTestToast("info")}
+          className="bg-[#00246e] text-white py-2 px-4 rounded mr-4"
+        >
+          Test Info Toast
+        </button>
+        <button
+          onClick={() => triggerTestToast("success")}
+          className="bg-[#0081b2] text-white py-2 px-4 rounded mr-4"
+        >
+          Test Success Toast
+        </button>
+        <button
+          onClick={() => triggerTestToast("error")}
+          className="bg-[#970000] text-white py-2 px-4 rounded"
+        >
+          Test Error Toast
+        </button>
+      </div> */}
     </>
   );
 }
