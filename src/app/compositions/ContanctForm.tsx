@@ -54,49 +54,49 @@ export default function ContactForm() {
   }, [state]);
 
   // Function to test toasts
-  const triggerTestToast = (type) => {
-    if (type === "info") {
-      toast.info("Test: Ihre Nachricht wird gesendet. Bitte warten Sie...", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        style: {
-          backgroundColor: "#00246e",
-          color: "#dbf3fd",
-          borderColor: "#00246e",
-        },
-      });
-    } else if (type === "success") {
-      toast.success(
-        "Test: Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt.",
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          style: { backgroundColor: "#00246e", color: "#ffffff" },
-        }
-      );
-    } else if (type === "error") {
-      toast.error(
-        "Test: Es gab einen Fehler bei der Übermittlung. Bitte versuchen Sie es erneut.",
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          style: { backgroundColor: "#970000", color: "#ffffff" },
-        }
-      );
-    }
-  };
+  // const triggerTestToast = (type) => {
+  //   if (type === "info") {
+  //     toast.info("Test: Ihre Nachricht wird gesendet. Bitte warten Sie...", {
+  //       position: "top-right",
+  //       autoClose: 3000,
+  //       hideProgressBar: true,
+  //       closeOnClick: true,
+  //       pauseOnHover: false,
+  //       draggable: true,
+  //       style: {
+  //         backgroundColor: "#00246e",
+  //         color: "#dbf3fd",
+  //         borderColor: "#00246e",
+  //       },
+  //     });
+  //   } else if (type === "success") {
+  //     toast.success(
+  //       "Test: Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt.",
+  //       {
+  //         position: "top-right",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: false,
+  //         draggable: true,
+  //         style: { backgroundColor: "#00246e", color: "#ffffff" },
+  //       }
+  //     );
+  //   } else if (type === "error") {
+  //     toast.error(
+  //       "Test: Es gab einen Fehler bei der Übermittlung. Bitte versuchen Sie es erneut.",
+  //       {
+  //         position: "top-right",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: false,
+  //         draggable: true,
+  //         style: { backgroundColor: "#970000", color: "#ffffff" },
+  //       }
+  //     );
+  //   }
+  // };
 
   return (
     <>
