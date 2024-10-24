@@ -62,6 +62,7 @@ export default function CampaignGoals() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const sliderRef = useRef<Slider | null>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [userInteracted, setUserInteracted] = useState<boolean>(false);
 
   const settings: Settings = {
     dots: false,
@@ -75,6 +76,7 @@ export default function CampaignGoals() {
 
   const handleCardClick = (index: number) => {
     setActiveIndex(index);
+    setUserInteracted(true);
     sliderRef.current?.slickGoTo(index);
   };
 
@@ -87,12 +89,14 @@ export default function CampaignGoals() {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      sliderRef.current?.slickNext();
-    }, 3000);
+    if (!userInteracted) {
+      const interval = setInterval(() => {
+        sliderRef.current?.slickNext();
+      }, 3000);
 
-    return () => clearInterval(interval);
-  }, []);
+      return () => clearInterval(interval);
+    }
+  }, [userInteracted]);
 
   return (
     <section className="py-8 px-8 lg:py-24 bg-white">
@@ -122,14 +126,16 @@ export default function CampaignGoals() {
           zu entwickeln.
         </p>
 
-        <div className="w-[300px] h-[200px] md:w-[450px] md:h-[300px] rounded-lg overflow-hidden border-4 border-[#00246e] shadow-lg transform transition-transform duration-300 hover:scale-105">
-          <Image
-            src="/assets/images/people_fist-pump.png"
-            alt="Thomas Hildebrandt"
-            className="w-full h-full object-cover"
-            width={450}
-            height={300}
-          />
+        <div className="relative w-full max-w-[350px] border-4 border-[#00246e] rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+          <div className="w-full aspect-w-3 aspect-h-4">
+            <Image
+              src="/assets/images/2858.jpg"
+              alt="Thomas Hildebrandt"
+              className="w-full h-full object-contain"
+              width={450}
+              height={600}
+            />
+          </div>
         </div>
       </div>
       <div className="container mx-auto px-4 ">

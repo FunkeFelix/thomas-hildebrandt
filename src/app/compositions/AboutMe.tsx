@@ -11,10 +11,10 @@ export default function AboutMe() {
         </h2>
         <div className="flex flex-col md:flex-row w-full items-center text-center md:text-left md:justify-around">
           <Image
-            src="/assets/images/thomas_hildebrandt--profil.png"
+            src="/assets/images/2687.jpg"
             alt="Thomas Hildebrandt"
-            className="rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] object-contain mb-6 md:mb-0 md:mr-6 "
-            width={200}
+            className="rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] object-cover mb-6 md:mb-0 md:mr-6 "
+            width={300}
             height={300}
           />
           <p className="text-gray-700 md:w-1/2 leading-relaxed text-lg font-light md:text-xl tracking-wide">

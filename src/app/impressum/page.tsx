@@ -48,7 +48,7 @@ export default function ImpressumPage() {
         </p>
 
         <h2 className="text-2xl font-semibold mt-6 mb-4">Kontakt:</h2>
-        <p>E-Mail: thomashildebrandt.ob2024@gmail.com</p>
+        <p>E-Mail: thomas.hildebrandt.ob2024@gmail.com</p>
 
         <h2 className="text-2xl font-semibold mt-6 mb-4">Vertreten durch:</h2>
         <p>Thomas Hildebrandt</p>

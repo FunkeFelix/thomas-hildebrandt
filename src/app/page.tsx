@@ -6,6 +6,7 @@ import ContactSection from "./compositions/ContactSection";
 import AboutMe from "./compositions/AboutMe";
 import ContactForm from "./compositions/ContanctForm";
 import ConsentBanner from "./ConsentBanner";
+import Link from "next/link";
 
 export default function LandingPage() {
   return (
@@ -50,6 +51,13 @@ export default function LandingPage() {
         <ContactForm />
       </div>
       <ConsentBanner />
+      <footer className="bg-black text-white text-center py-4">
+        <p>&copy; 2024 Thomas Hildebrandt</p>
+        <Link className="mr-12" href="/datenschutz">
+          Datenschutz
+        </Link>
+        <Link href="/impressum">Impressum</Link>
+      </footer>
     </div>
   );
 }
